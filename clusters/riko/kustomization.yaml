@@ -1,0 +1,7 @@
+resources:
+- flux-system
+- apps/klum.yaml
+- apps/transmission.yaml
+- apps/tailscale.yaml
+- apps/plex.yaml
+- apps/vikunja.yaml
