@@ -10,7 +10,3 @@ spec:
     name: flux-system
   path: ./apps/plex
   prune: true
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age

@@ -1,7 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patches:
+  - patch: |-
+      apiVersion: kustomize.toolkit.fluxcd.io/v1
+      kind: Kustomization
+      metadata:
+        name: patch-kustomization
+      spec:
+        decryption:
+          provider: sops
+          secretRef:
+            name: sops-age
+        postBuild:
+          substitute:
+            TSNET: dolly-ruffe.ts.net
+    target:
+      kind: Kustomization
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
 resources:
-- flux-system
-- apps/klum.yaml
-- apps/transmission.yaml
-- apps/tailscale.yaml
-- apps/plex.yaml
-- apps/vikunja.yaml
+  - flux-system
+  - apps/klum.yaml
+  - apps/transmission.yaml
+  - apps/tailscale.yaml
+  - apps/plex.yaml
+  - apps/vikunja.yaml

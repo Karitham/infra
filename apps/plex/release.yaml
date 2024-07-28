@@ -31,7 +31,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: tailscale
-      url: plex.dolly-ruffe.ts.net
+      url: plex.${TSNET}
       annotations:
         tailscale.com/funnel: "true"
     rclone:

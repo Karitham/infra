@@ -2,7 +2,7 @@ image: quay.io/linuxserver.io/transmission:arm64v8-latest
 replicaCount: 1
 ingress:
   enabled: true
-  hostname: transmission.dolly-ruffe.ts.net
+  hostname: transmission.${TSNET}
   ingressClassName: tailscale
   path: /
   pathType: Prefix

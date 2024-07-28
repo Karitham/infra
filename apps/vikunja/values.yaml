@@ -32,12 +32,12 @@ api:
       enabled: true
       ingressClassName: tailscale
       hosts:
-        - host: todoapi.dolly-ruffe.ts.net
+        - host: todoapi.${TSNET}
           paths:
             - path: "/api/v1"
       tls:
         - hosts:
-            - todoapi.dolly-ruffe.ts.net
+            - todoapi.${TSNET}
   configMaps:
     # The configuration for Vikunja's api.
     # https://vikunja.io/docs/config-options/
@@ -48,7 +48,7 @@ api:
           # Vikunja needs to know the frontend URL for password reset emails.
           # So you might need to provide its value, if you're not using an ingress.
           service:
-            frontendUrl: https://todo.dolly-ruffe.ts.net
+            frontendUrl: https://todo.${TSNET}
 
           # typesense:
           #   # Typesense will only work if it is enabled below (typesense.enabled).
@@ -92,12 +92,12 @@ frontend:
       ingressClassName: tailscale
       hosts:
         # This is just an example. You should change this to your own domain.
-        - host: todo.dolly-ruffe.ts.net
+        - host: todo.${TSNET}
           paths:
             - path: "/"
       tls:
         - hosts:
-            - todo.dolly-ruffe.ts.net
+            - todo.${TSNET}
   # You only need to provide the URL to the API as environment variable here if you deviate from the "built-in" ingress in the api section.
   #env:
   #  VIKUNJA_API_URL: http://vikunja.local/api
