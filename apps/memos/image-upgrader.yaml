@@ -1,0 +1,18 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: memos
+spec:
+  image: neosmemo/memos
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: memos
+spec:
+  imageRepositoryRef:
+    name: memos
+  policy:
+    semver:
+      range: 0.x.x

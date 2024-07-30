@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: memos
-          image: neosmemo/memos:stable
+          image: neosmemo/memos:0.22.3
           resources:
             requests:
               memory: "128Mi"
