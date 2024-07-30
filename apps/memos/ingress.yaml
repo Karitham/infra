@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: memos
+spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - memo.${TSNET}
+      secretName: memo-tls-secret
+  rules:
+    - host: memo.${TSNET}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: memos
+                port:
+                  number: 5230

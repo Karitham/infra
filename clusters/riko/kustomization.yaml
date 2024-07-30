@@ -24,4 +24,5 @@ resources:
   - apps/transmission.yaml
   - apps/tailscale.yaml
   - apps/plex.yaml
+  - apps/memos.yaml
   - apps/vikunja.yaml

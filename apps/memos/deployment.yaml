@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memos
+  template:
+    metadata:
+      labels:
+        app: memos
+    spec:
+      containers:
+        - name: memos
+          image: neosmemo/memos:stable
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "128m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5230
+              initialDelaySeconds: 5
+              periodSeconds: 10
+          env:
+            - name: MEMOS_PORT
+              value: "5230"
+          ports:
+            - containerPort: 5230
+          volumeMounts:
+            - name: memos-db
+              mountPath: /var/opt/memos
+      volumes:
+        - name: memos-db
+          persistentVolumeClaim:
+            claimName: memos-db
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: memos
+spec:
+  selector:
+    app: memos
+  ports:
+    - protocol: TCP
+      port: 5230
+      targetPort: 5230
